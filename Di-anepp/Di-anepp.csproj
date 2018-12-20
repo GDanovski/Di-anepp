@@ -31,8 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CellToolDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="CellToolDK">
       <HintPath>..\..\CellToolDK\CellToolDK\bin\Release\CellToolDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />

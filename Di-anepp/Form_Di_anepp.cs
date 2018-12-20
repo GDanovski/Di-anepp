@@ -270,7 +270,11 @@ for (int i = 0; i < GPc.Length; i++)
             {
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\CellToolPlugIns\\Di-anepp.xml";
                 if (File.Exists(path))
-                    input = File.ReadAllText(path);
+                    try
+                    {
+                        input = File.ReadAllText(path);
+                    }
+                    catch { return false; }
                 else
                     return false;
             }
@@ -361,11 +365,14 @@ for (int i = 0; i < GPc.Length; i++)
             t.ReloadImage();
             //Load to settings file
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\CellToolPlugIns";
-
-            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            try
+            {
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 path += "\\Di-anepp.xml";
 
-            File.WriteAllText(path, XmlToString(xDoc));
+                File.WriteAllText(path, XmlToString(xDoc));
+            }
+            catch { }
             //export images and histogram
             ExportDataToDrive();
         }
