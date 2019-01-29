@@ -1,5 +1,5 @@
 # Di-anepp
-[**CellTool**](https://dnarepair.bas.bg/software/CellTool/) PlugIn for GP images analysis. It can be build from source code by using Visual Studio 2017 (Add all .dll files from the "References" folder to the project). To install the plugin start the “CellTool.exe” as administrator and press install button in the PlugIns menu. Browse to the assembly ("Di-anepp.CTPlugIn.dll") and press the “OK” button.
+[**CellTool**](https://dnarepair.bas.bg/software/CellTool/) PlugIn for GP images analysis. It can be build from source code by using Visual Studio 2017 (Add all .dll files from the "References" folder to the project). To install the plugin start the “CellTool.exe” as administrator (requires CellTool to be installed - [source code](https://github.com/GDanovski/CellTool) and press install button in the PlugIns menu. Browse to the assembly ("Di-anepp.CTPlugIn.dll") and press the “OK” button.
 
 **Used Literature:**
 ```
