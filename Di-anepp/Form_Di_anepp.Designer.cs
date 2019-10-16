@@ -67,6 +67,8 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel_Img = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBox_ROIs = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel_LUT.SuspendLayout();
@@ -124,6 +126,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox_ROIs);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.button_Exit);
             this.groupBox1.Controls.Add(this.button_Store);
@@ -154,7 +158,7 @@
             this.groupBox2.Controls.Add(this.textBox_Min);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(20, 160);
+            this.groupBox2.Location = new System.Drawing.Point(20, 207);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(306, 143);
             this.groupBox2.TabIndex = 11;
@@ -288,7 +292,7 @@
             // 
             // button_Exit
             // 
-            this.button_Exit.Location = new System.Drawing.Point(253, 326);
+            this.button_Exit.Location = new System.Drawing.Point(253, 373);
             this.button_Exit.Name = "button_Exit";
             this.button_Exit.Size = new System.Drawing.Size(75, 23);
             this.button_Exit.TabIndex = 10;
@@ -298,7 +302,7 @@
             // 
             // button_Store
             // 
-            this.button_Store.Location = new System.Drawing.Point(135, 326);
+            this.button_Store.Location = new System.Drawing.Point(135, 373);
             this.button_Store.Name = "button_Store";
             this.button_Store.Size = new System.Drawing.Size(75, 23);
             this.button_Store.TabIndex = 9;
@@ -308,7 +312,7 @@
             // 
             // button_Refresh
             // 
-            this.button_Refresh.Location = new System.Drawing.Point(25, 326);
+            this.button_Refresh.Location = new System.Drawing.Point(25, 373);
             this.button_Refresh.Name = "button_Refresh";
             this.button_Refresh.Size = new System.Drawing.Size(75, 23);
             this.button_Refresh.TabIndex = 8;
@@ -447,6 +451,24 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(22, 154);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(51, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Use ROI:";
+            // 
+            // comboBox_ROIs
+            // 
+            this.comboBox_ROIs.FormattingEnabled = true;
+            this.comboBox_ROIs.Location = new System.Drawing.Point(222, 151);
+            this.comboBox_ROIs.Name = "comboBox_ROIs";
+            this.comboBox_ROIs.Size = new System.Drawing.Size(109, 21);
+            this.comboBox_ROIs.TabIndex = 13;
+            // 
             // Form_Di_anepp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -517,5 +539,7 @@
         private System.Windows.Forms.Label label_val_2;
         private System.Windows.Forms.Label label_val_1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ComboBox comboBox_ROIs;
+        private System.Windows.Forms.Label label8;
     }
 }
