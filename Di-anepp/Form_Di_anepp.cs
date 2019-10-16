@@ -30,6 +30,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 using CellToolDK;
+using System.Collections.Generic;
 
 namespace Di_anepp
 {
@@ -70,9 +71,31 @@ namespace Di_anepp
             comboBox_Ordered.Items.AddRange(imagesTitles);
             comboBox_Ordered.SelectedIndex = 0;
 
+            comboBox_ROIs.Items.Clear();
+            comboBox_ROIs.Items.AddRange(LoadROIs(fi));
+            comboBox_ROIs.SelectedIndex = 0;
+
             if (!ReadXml()) ReadXml("fromFile");
 
             RefreshData();
+        }
+        private string[] LoadROIs(TifFileInfo fi)
+        {
+            List<string> roiList = new List<string>() { "None" };
+            string name = "";
+            if (fi.roiList != null &&
+                fi.roiList.Length >= 1 &&
+                fi.roiList[0] != null &&
+                fi.roiList[0].Count >= 1)
+                for (int i = 0; i < fi.roiList[0].Count; i++)
+                {
+                    name = "ROI" + (i + 1);
+                    if (fi.roiList[0][i].Comment != "")
+                        name += ": " + fi.roiList[0][i].Comment;
+                    roiList.Add(name);
+                }
+            name = "";
+            return roiList.ToArray();
         }
         private void RefreshData()
         {
@@ -82,9 +105,16 @@ namespace Di_anepp
             /// Quantitative imaging of membrane lipid order in cells and organisms.Nature protocols. 
             /// 7. 24-35. 10.1038/nprot.2011.419.
             /// </summary>
-
-            ordImg = Di_anepp_Processing.GetImage(comboBox_Ordered.SelectedIndex,fi);
-            disordImg = Di_anepp_Processing.GetImage(comboBox_Disordered.SelectedIndex, fi);
+            if (comboBox_ROIs.SelectedIndex == 0)
+            {
+                ordImg = Di_anepp_Processing.GetImage(comboBox_Ordered.SelectedIndex, fi);
+                disordImg = Di_anepp_Processing.GetImage(comboBox_Disordered.SelectedIndex, fi);
+            }
+            else
+            {
+                ordImg = Di_anepp_Processing.GetImage(comboBox_Ordered.SelectedIndex, fi,fi.roiList[0][comboBox_ROIs.SelectedIndex-1]);
+                disordImg = Di_anepp_Processing.GetImage(comboBox_Disordered.SelectedIndex, fi, fi.roiList[0][comboBox_ROIs.SelectedIndex - 1]);
+            }
 
             if (checkBox1.Checked && Gf != 1)
             {
@@ -380,7 +410,10 @@ for (int i = 0; i < GPc.Length; i++)
         {
             try
             {
-                string dir = fi.Dir.Substring(0, fi.Dir.Length - 4) + "_Results";
+                string ROIName = "";
+                if (comboBox_ROIs.SelectedIndex > 0)
+                    ROIName = "_ROI" + (comboBox_ROIs.SelectedIndex);
+                string dir = fi.Dir.Substring(0, fi.Dir.Length - 4) + "_Results" + ROIName;
 
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);

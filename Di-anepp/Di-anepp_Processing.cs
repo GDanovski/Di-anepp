@@ -33,14 +33,20 @@ namespace Di_anepp
 {
     class Di_anepp_Processing
     {
-        public static double[] GetImage(int C, TifFileInfo fi)
+        public static double[] GetImage(int C, TifFileInfo fi, ROI roi = null)
         {
             double[] res = new double[fi.sizeX * fi.sizeY];
-            
+            bool[,] shablon = Colocalization.ROIManager.GetShablon(0, roi, fi);
+
             for (int y = 0, pointer = 0; y < fi.sizeY; y++)
                 for (int x = 0; x < fi.sizeX; x++, pointer++)
-                    res[pointer] = (double)fi.image8bit[C][y][x];
-            
+                    if (shablon == null || shablon[y, x] == true)
+                        res[pointer] = (double)fi.image8bit[C][y][x];
+                    else
+                        res[pointer] = -100;
+
+            shablon = null;
+
             return res;
         }
 
